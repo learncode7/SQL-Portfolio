@@ -13,7 +13,7 @@ FROM transaction_data
 WHERE zip = 20252;
 
 -- 3
--- Use a query to find the names 
+-- The fraudsters thought it would be funny to use ‘Art Vandelay’ for their full name or add a ‘der’ for their middle name. Use a query to find the names 
 -- and emails associated with these transactions.
 SELECT full_name, email
 FROM transaction_data
@@ -22,7 +22,7 @@ OR full_name LIKE '% der %';
 
 
 -- 4
--- Find the ip_addresses and emails listed with these transactions.
+-- Find the ip_addresses and emails listed with these transactions - the ones with IP address beginning with '10.'
 SELECT ip_address, email
 FROM transaction_data
 WHERE ip_address LIKE '10.%';
@@ -33,7 +33,7 @@ WHERE ip_address LIKE '10.%';
 -- Find the emails in transaction_data with
 -- ‘temp_email.com’ as a domain.
 
-SELECT * FROM transaction_data
+SELECT email FROM transaction_data
 WHERE email LIKE '%temp_email.com';
 
 
