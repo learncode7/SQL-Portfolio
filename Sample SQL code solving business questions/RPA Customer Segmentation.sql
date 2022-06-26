@@ -8,10 +8,12 @@
 -- 2
 -- Find the email addresses and birthdays of users whose 
 -- birthday is between 1980-01-01 and 1989-12-31.
+SELECT email, birthday FROM users
+WHERE birthday BETWEEN '1980-01-01' AND '1989-12-31';
 
 -- 3
 -- Find the emails and creation date of users 
--- whose created_at date matches this condition.
+-- whose created_at date matches this condition. We are interested in the group of users that signed up prior to May 2017. 
 SELECT email, created_at 
 FROM users
 WHERE created_at < '2017-05-01';
@@ -34,7 +36,7 @@ WHERE campaign LIKE 'BBB%';
 -- their campaign.
 SELECT email, campaign
 FROM users
-WHERE campaign LIKE '%2';
+WHERE campaign LIKE '%-2';
 
 -- 7
 -- Find the emails for all users who received both a campaign and a test. 
@@ -49,3 +51,9 @@ AND test IS NOT NULL;
 -- Challenge
 -- One of the members of the marketing team had an idea of calculating
 -- how old users were when they signed up.
+
+SELECT (created_at - birthday) as age FROM users
+GROUP BY 1
+LIMIT 30;
+
+
