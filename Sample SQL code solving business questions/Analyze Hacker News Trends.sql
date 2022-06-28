@@ -17,11 +17,13 @@ ORDER BY 2 DESC;
 -- Q4: Add their scores together and divide it by the total sum. 
 SELECT (517 + 309 + 304 + 282) / 6366.0;
 
--- Q5: 
+-- Q5: How many times has each offending user posted this link?
 SELECT user, COUNT(url) FROM hacker_news
 WHERE url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
 GROUP BY user;
 
+
+-- Q6/Q7: First, we want to categorize each story based on their source. Add a column for the number of stories from each URL using COUNT().
 SELECT CASE
   WHEN url LIKE '%github.com%' THEN 'Github'
   WHEN url LIKE '%medium.com%' THEN 'Medium'
@@ -32,13 +34,20 @@ COUNT(url)
 FROM hacker_news
 GROUP BY 1;
 
+-- Q8: Look at timestamp column 
+SELECT timestamp
+FROM hacker_news
+LIMIT 10;
 
+-- Q9: Let’s test this function out:
 SELECT timestamp,
   strftime('%H', timestamp)
 FROM hacker_news
 GROUP BY 1
 LIMIT 20;
 
+-- Q10:Let’s write a query that returns three columns: The hours of the timestamp; The average score for each hour; The count of stories for each hour
+    
 SELECT strftime('%H', timestamp) AS 'Hour',
 ROUND(AVG(score), 0) AS 'Score',
 COUNT(*) AS 'Story' FROM hacker_news 
